@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>main page</title>
+    <!-- CSS FILES -->
+    <link rel="stylesheet" type="text/css" href="{% static "base/css/uikit.min.css" %}">
+    <style>
+        .uk-container-small {
+            max-width: 46rem;
+        }
+
+        .whole {
+            min-height: 650px;
+        }
+    </style>
+</head>
+<body>
+<div class="uk-offcanvas-content">
+    <!--HEADER-->
+    <header style="background-color: rgba(214, 211, 211, 0.747); border-bottom: 1px solid #f2f2f2;"
+            data-uk-sticky="show-on-up: true; animation: uk-animation-slide-top">
+        <div class="uk-container">
+            <nav id="navbar" data-uk-navbar="mode: click;" style="height :75px;">
+                <div class="uk-navbar-left">
+                    <ul class="uk-navbar-nav">
+                        <li>
+                            <a href="#" data-uk-icon="icon:user"></a>
+                            <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-left">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li class="uk-nav-header uk-text-small uk-text-primary">YOUR ACCOUNT</li>
+                                    <li><a href="#"><span data-uk-icon="icon: heart"></span> 我的收藏</a></li>
+                                    <li><a href="#"><span data-uk-icon="icon: settings"></span> 修改个人信息</a></li>
+                                    <li class="uk-nav-divider"></li>
+                                    <li><a href="#"><span data-uk-icon="icon: sign-out"></span> 注销</a></li>
+
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav uk-visible@m">
+                        <li class="uk-active"><a href="/MetalFighter/queryInfo">地图广场</a></li>
+                        <li><a href="/MetalFighter/authorWork">我的博客</a></li>
+                        <li><a href="/MetalFighter/pushBlog">写博客</a></li>
+                        <li><a href="/MetalFighter/charge">购买会员</a></li>
+                        <li><a href="/MetalFighter/register">注册</a></li>
+                    </ul>
+                    <div class="uk-navbar-item">
+                        <a class="uk-navbar-toggle uk-hidden@s" data-uk-toggle data-uk-navbar-toggle-icon
+                           href="#offcanvas-nav"></a>
+                        {% if  username != "none" %}
+{#                            <a href="/MetalFighter/login" class="uk-button uk-button-secondary uk-visible@m"><span#}
+{#                                    data-uk-icon="sign-in"></span>登出</a>#}
+                             <form action="{% url 'MetalFighter:logout' %}" method="post">
+                                {% csrf_token %}
+                                <button class="uk-button uk-button-secondary uk-visible@m" data-uk-icon="sign-out" type="submit">登出</button>
+                             </form>
+                        {% else %}
+                            <a href="/MetalFighter/login" class="uk-button uk-button-secondary uk-visible@m"><span
+                                    data-uk-icon="sign-in"></span>登录</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/HEADER-->
+
+    <!--AUTHOR-->
+    <section class="uk-section uk-section-small" style="background-color: #e4e4e4">
+        <div id="author-wrap" class="uk-container uk-container-small">
+            <div class="uk-grid uk-grid-medium uk-flex uk-flex-middle" data-uk-grid>
+                <div class="uk-width-auto">
+                    <img src="" alt="" class="uk-border-circle">
+                </div>
+                <div class="uk-width-expand">
+                    <h4 class="uk-margin-remove uk-text-bold">{{ author }}</h4>
+                    <span class="uk-text-small uk-text-muted">{{ time }}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/AUTHOR-->
+    <!--文章主体-->
+    <div class="content-background" style="background-color: #e4e4e4">
+        <div class="uk-section">
+            <div class="uk-container uk-container-small uk-position-relative">
+                <div uk-grid>
+                    <div class="uk-width-1-1">
+                        <div class="uk-card uk-card-default uk-card-body">
+                            <h2>{{ title }}</h2>
+                            <p>
+                                {{ context }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/文章主题-->
+    <section class="uk-section uk-section-muted">
+        <div class="uk-container">
+            <h2 class="uk-text-bold">More stories</h2>
+            <div data-uk-slider="velocity: 5">
+                <div class="uk-position-relative">
+                    <div class="uk-slider-container">
+                        <ul class="uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m uk-grid uk-grid-medium">
+                            <li>
+                                <!-- card -->
+                                <div>
+                                    <div class="uk-card uk-card-default uk-card-small" style="box-shadow: none;">
+                                        <div class="uk-card-media-top">
+                                            <a href="#"><img src="https://unsplash.it/620/350/?random" alt=""></a>
+                                        </div>
+                                        <div class="uk-card-header">
+                                            <div class="uk-grid-small uk-flex-middle" data-uk-grid>
+                                                <div class="uk-width-auto">
+                                                    <img class="uk-border-circle" alt="" width="40" height="40"
+                                                         src="https://unsplash.it/60/60/?random">
+                                                </div>
+                                                <div class="uk-width-expand">
+                                                    <h6 class="uk-margin-remove-bottom uk-text-bold">Author Name</h6>
+                                                    <p class="uk-text-meta uk-margin-remove-top uk-text-small">
+                                                        <time datetime="2016-04-01T19:00">April 01, 2016</time>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <h4 class="uk-margin-small-bottom uk-text-bold">Sed do eiusmod tempor
+                                                incididunt</h4>
+                                            <span class="uk-text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</span>
+                                            <a class="uk-button uk-button-text uk-text-bold uk-margin-small" href="">READ
+                                                MORE</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /card -->
+                            </li>
+                            <li>
+                                <!-- card -->
+                                <div>
+                                    <div class="uk-card uk-card-default uk-card-small" style="box-shadow: none;">
+                                        <div class="uk-card-media-top">
+                                            <a href="#"><img src="https://unsplash.it/620/350/?random" alt=""></a>
+                                        </div>
+                                        <div class="uk-card-header">
+                                            <div class="uk-grid-small uk-flex-middle" data-uk-grid>
+                                                <div class="uk-width-auto">
+                                                    <img class="uk-border-circle" alt="" width="40" height="40"
+                                                         src="https://unsplash.it/60/60/?random">
+                                                </div>
+                                                <div class="uk-width-expand">
+                                                    <h6 class="uk-margin-remove-bottom uk-text-bold">Author Name</h6>
+                                                    <p class="uk-text-meta uk-margin-remove-top uk-text-small">
+                                                        <time datetime="2016-04-01T19:00">April 01, 2016</time>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <h4 class="uk-margin-small-bottom uk-text-bold">Sed do eiusmod tempor
+                                                incididunt</h4>
+                                            <span class="uk-text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</span>
+                                            <a class="uk-button uk-button-text uk-text-bold uk-margin-small" href="">READ
+                                                MORE</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /card -->
+                            </li>
+                            <li>
+                                <!-- card -->
+                                <div>
+                                    <div class="uk-card uk-card-default uk-card-small" style="box-shadow: none;">
+                                        <div class="uk-card-media-top">
+                                            <a href="#"><img src="https://unsplash.it/620/350/?random" alt=""></a>
+                                        </div>
+                                        <div class="uk-card-header">
+                                            <div class="uk-grid-small uk-flex-middle" data-uk-grid>
+                                                <div class="uk-width-auto">
+                                                    <img class="uk-border-circle" alt="" width="40" height="40"
+                                                         src="https://unsplash.it/60/60/?random">
+                                                </div>
+                                                <div class="uk-width-expand">
+                                                    <h6 class="uk-margin-remove-bottom uk-text-bold">Author Name</h6>
+                                                    <p class="uk-text-meta uk-margin-remove-top uk-text-small">
+                                                        <time datetime="2016-04-01T19:00">April 01, 2016</time>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <h4 class="uk-margin-small-bottom uk-text-bold">Sed do eiusmod tempor
+                                                incididunt</h4>
+                                            <span class="uk-text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</span>
+                                            <a class="uk-button uk-button-text uk-text-bold uk-margin-small" href="">READ
+                                                MORE</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /card -->
+                            </li>
+                            <li>
+                                <!-- card -->
+                                <div>
+                                    <div class="uk-card uk-card-default uk-card-small" style="box-shadow: none;">
+                                        <div class="uk-card-media-top">
+                                            <a href="#"><img src="https://unsplash.it/620/350/?random" alt=""></a>
+                                        </div>
+                                        <div class="uk-card-header">
+                                            <div class="uk-grid-small uk-flex-middle" data-uk-grid>
+                                                <div class="uk-width-auto">
+                                                    <img class="uk-border-circle" alt="" width="40" height="40"
+                                                         src="https://unsplash.it/60/60/?random">
+                                                </div>
+                                                <div class="uk-width-expand">
+                                                    <h6 class="uk-margin-remove-bottom uk-text-bold">Author Name</h6>
+                                                    <p class="uk-text-meta uk-margin-remove-top uk-text-small">
+                                                        <time datetime="2016-04-01T19:00">April 01, 2016</time>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <h4 class="uk-margin-small-bottom uk-text-bold">Sed do eiusmod tempor
+                                                incididunt</h4>
+                                            <span class="uk-text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</span>
+                                            <a class="uk-button uk-button-text uk-text-bold uk-margin-small" href="">READ
+                                                MORE</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /card -->
+                            </li>
+                            <li>
+                                <!-- card -->
+                                <div>
+                                    <div class="uk-card uk-card-default uk-card-small" style="box-shadow: none;">
+                                        <div class="uk-card-media-top">
+                                            <a href="#"><img src="https://unsplash.it/620/350/?random" alt=""></a>
+                                        </div>
+                                        <div class="uk-card-header">
+                                            <div class="uk-grid-small uk-flex-middle" data-uk-grid>
+                                                <div class="uk-width-auto">
+                                                    <img class="uk-border-circle" alt="" width="40" height="40"
+                                                         src="https://unsplash.it/60/60/?random">
+                                                </div>
+                                                <div class="uk-width-expand">
+                                                    <h6 class="uk-margin-remove-bottom uk-text-bold">Author Name</h6>
+                                                    <p class="uk-text-meta uk-margin-remove-top uk-text-small">
+                                                        <time datetime="2016-04-01T19:00">April 01, 2016</time>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <h4 class="uk-margin-small-bottom uk-text-bold">Sed do eiusmod tempor
+                                                incididunt</h4>
+                                            <span class="uk-text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</span>
+                                            <a class="uk-button uk-button-text uk-text-bold uk-margin-small" href="">READ
+                                                MORE</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /card -->
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin">
+
+                    </ul>
+                    <div class="uk-hidden@m uk-light">
+                        <a class="uk-position-center-left uk-position-small" href="#" data-uk-slidenav-previous
+                           data-uk-slider-item="previous"></a>
+                        <a class="uk-position-center-right uk-position-small" href="#" data-uk-slidenav-next
+                           data-uk-slider-item="next"></a>
+                    </div>
+                    <div class="uk-visible@m">
+                        <a class="uk-position-center-left-out uk-position-small" href="#" data-uk-slidenav-previous
+                           data-uk-slider-item="previous"></a>
+                        <a class="uk-position-center-right-out uk-position-small" href="#" data-uk-slidenav-next
+                           data-uk-slider-item="next"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/主体-->
+    <!-- footer -->
+    <div class="uk-flex-bottom">
+        <footer class="uk-section uk-section-small" style="margin-bottom: 10px;">s
+            <div class="uk-container">
+                <p class="uk-text-small uk-text-center">2018 - 幺蛾子 | Built with <a href="http://getuikit.com"
+                                                                                   title="Visit UIkit 3 site"
+                                                                                   target="_blank" data-uk-tooltip><span
+                        data-uk-icon="uikit"></span></a></p>
+            </div>
+        </footer>
+    </div>
+    <!-- /footer -->
+</div>
+<!-- JS FILES -->
+<script src="{% static "base/jquery-3.3.1.js" %}"></script>
+<script src="{% static "base/js/components/slider.js" %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit-icons.min.js"></script>
+</body>
+</html>

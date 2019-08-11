@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>write - UIkit 3 KickOff</title>
+    <!-- CSS FILES -->
+
+    <!--Custom-Theme-files-->
+    <link href="{% static "css/style.css" %}" rel='stylesheet' type='text/css'/>
+    <link href="{% static "css/nav.css" %}" rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/css/uikit.min.css">
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+
+    <!--/script-->
+
+
+    <!--//end-animate-->
+    <style>
+        .uk-container-small {
+            max-width: 46rem;
+        }
+
+        .whole {
+            padding-left: 280px;
+            height: 630px;
+            background-color: #f2f2f2;
+        }
+
+        .blog-body {
+            text-align: center;
+            margin-right: 320px;
+        }
+
+        .text {
+            margin-top: 30px;
+        }
+
+        textarea {
+            text-align-last: left;
+        }
+
+        button {
+            background-color: aqua;
+            height: 30px;
+            width: 120px;
+        }
+    </style>
+</head>
+<body>
+<div class="uk-offcanvas-content">
+    <!--HEADER-->
+    <header style="background-color: rgba(214, 211, 211, 0.747); border-bottom: 1px solid #f2f2f2;"
+            data-uk-sticky="show-on-up: true; animation: uk-animation-slide-top">
+        <div class="uk-container">
+            <nav id="navbar" data-uk-navbar="mode: click;" style="height :75px;">
+                <div class="uk-navbar-left">
+                    <ul class="uk-navbar-nav">
+                        <li>
+                            <a href="#" data-uk-icon="icon:user"></a>
+                            <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-left">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li class="uk-nav-header uk-text-small uk-text-primary">YOUR ACCOUNT</li>
+                                    <li><a href="#"><span data-uk-icon="icon: heart"></span> 我的收藏</a></li>
+                                    <li><a href="#"><span data-uk-icon="icon: settings"></span> 修改个人信息</a></li>
+                                    <li class="uk-nav-divider"></li>
+                                    <li><a href="#"><span data-uk-icon="icon: sign-out"></span> 注销</a></li>
+
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav uk-visible@m">
+                        <li class="uk-active"><a href="/MetalFighter/queryInfo">地图广场</a></li>
+                        <li><a href="/MetalFighter/authorWork">我的博客</a></li>
+                        <li><a href="/MetalFighter/pushBlog">写博客</a></li>
+                        <li><a href="/MetalFighter/charge">购买会员</a></li>
+                        <li><a href="/MetalFighter/register">注册</a></li>
+                    </ul>
+                    <div class="uk-navbar-item">
+                        <a class="uk-navbar-toggle uk-hidden@s" data-uk-toggle data-uk-navbar-toggle-icon
+                           href="#offcanvas-nav"></a>
+                        {% if  request.session.has == 1 %}
+{#                            <a href="/MetalFighter/login" class="uk-button uk-button-secondary uk-visible@m"><span#}
+{#                                    data-uk-icon="sign-in"></span>登出</a>#}
+                             <form action="{% url 'MetalFighter:logout' %}" method="post">
+                                {% csrf_token %}
+                                <button class="uk-button uk-button-secondary uk-visible@m" data-uk-icon="sign-out" type="submit">登出</button>
+                             </form>
+                        {% else %}
+                            <a href="/MetalFighter/login" class="uk-button uk-button-secondary uk-visible@m"><span
+                                    data-uk-icon="sign-in"></span>登录</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/HEADER-->
+    <!--主体-->
+    <div class="uk-flex-top" style=" background-color: #e4e4e4">
+        <img src="{% static "img/blog_top.jpg" %}" width="100%">
+    </div>
+    <div class="whole">
+        <div class="blog-body">
+            <br>
+            <!-- 写博客action -->
+            <form action="{% url 'MetalFighter:writeBlog' %}" method="post">
+                {% csrf_token %}
+                {#                <!-- 输入日期 -->#}
+                {#                <div class="styled-input wow slideInUp animated animated" data-wow-delay=".5s">#}
+                {#                    <input type="date" name="" required/>#}
+                {#                    <span></span></div>#}
+                {#                <!-- 输入时间 -->#}
+                {#                <div class="styled-input wow slideInUp animated animated" data-wow-delay=".5s">#}
+                {#                    <input type="time" name="" required/>#}
+                {#                    <span></span></div>#}
+                <!-- 博客标题 -->
+                <div class="styled-input wow slideInUp animated animated" data-wow-delay=".5s">
+                    <input type="text" name="title" required/>
+                    <label>Title</label>
+                    <span></span>
+                </div>
+                <div class="styled-input wide wow slideInUp animated animated" data-wow-delay=".5s">
+                    <!-- 博客主体 -->
+                    <textarea required name="context"></textarea>
+                    <label>Message</label>
+                    <span></span>
+                </div>
+                <div class="send wow shake animated animated" data-wow-delay=".5s">
+                    <input type="submit" value="Send">
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--/主体-->
+    <!-- footer -->
+    <footer class="uk-section uk-section-small" style="margin-bottom: 10px;"></footer>
+    <center><span style="font-size:15px; padding-bottom:50px;">2018 - 幺蛾子 | Built with <a href="http://getuikit.com"
+                                                                                          title="Visit UIkit 3 site"
+                                                                                          target="_blank"
+                                                                                          data-uk-tooltip><span
+            data-uk-icon="uikit"></span></a> </span></center>
+    </footer>
+    <!-- /footer -->
+</div>
+<!-- JS FILES -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit-icons.min.js"></script>
+</body>
+</html>

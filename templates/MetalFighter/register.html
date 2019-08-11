@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" class="uk-height-1-1">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register - UIkit 3 KickOff</title>
+    <link rel="icon" href="img/favicon.ico">
+    <!-- CSS FILES -->
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/css/uikit.min.css">
+    <style type="text/css">
+        .uk-background-muted {
+            background-image: url("{% static "img/register.jpg" %}");
+            height: 100%;
+            width: 100%;
+            background-position: center 0;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body class="uk-height-1-1">
+<div class="uk-flex uk-flex-center uk-flex-middle uk-background-muted uk-height-viewport">
+    <div class="uk-position-bottom-center uk-position-small uk-visible@m">
+            <span class="uk-text-small uk-text-muted">
+                <a href="https://github.com/zzseba78/Kick-Off">Created by 幺蛾子</a> | Built with
+                <a href="http://getuikit.com" title="Visit UIkit 3 site" target="_blank"
+                   data-uk-tooltip>
+                    <span data-uk-icon="uikit"></span>
+                </a>
+            </span>
+    </div>
+    <div class="uk-width-medium uk-padding-small">
+        <form action="{% url 'MetalFighter:register' %}" method="post">
+            {% csrf_token %}
+            <fieldset class="uk-fieldset">
+                <legend class="uk-legend">Register</legend>
+                <div class="uk-margin">
+                    <div class="uk-inline uk-width-1-1">
+                        <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: user"></span>
+                        <input name="user_name" class="uk-input uk-form-medium" required placeholder="Username" type="text">
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <div class="uk-inline uk-width-1-1">
+                        <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: lock"></span>
+                        <input name="password" class="uk-input uk-form-medium" required placeholder="Password" type="password">
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <div class="uk-inline uk-width-1-1">
+                        <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: adjust"></span>
+                        <input name="nickname" class="uk-input uk-form-medium" required placeholder="nickname" type="text">
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <div class="uk-inline uk-width-1-1">
+                        <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: adjust"></span>
+                        <input name="birth" class="uk-input uk-form-medium" required placeholder="birth" type="date">
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <div class="uk-inline uk-width-1-1">
+                        <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: adjust"></span>
+                        <input name="phone" class="uk-input uk-form-medium" required placeholder="phone" type="text">
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <div class="uk-inline uk-width-1-1">
+                        <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon:at"></span>
+                        <input name="email" class="uk-input uk-form-medium" required placeholder="Email" type="text">
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <div class="uk-inline uk-width-1-1">
+                        <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon:at"></span>
+                        <input name="info" class="uk-input uk-form-medium" required placeholder="info" type="text">
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <button type="submit"
+                            class="uk-button uk-button-primary uk-button-primary uk-button-medium uk-width-1-1">register
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+
+    </div>
+</div>
+
+<!-- JS FILES -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit-icons.min.js"></script>
+</body>
+
+</html>
