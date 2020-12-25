@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">freeVoteApp</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_register">Register</string>
+    <string name="action_visitor">Visitor</string>
+    <string name="welcome">"Welcome ! "</string>
+    <!-- Strings related to main page -->
+    <string name="search_input">Enter your VoteKey here.</string>
+    <string name="action_search">Search</string>
+    <string name="user_info">User Profile</string>
+    <string name="vote_info">Show My Votes</string>
+    <string name="result_info">Show My Submissions</string>
+    <string name="add_new_vote_but">Create New Vote</string>
+    <!-- Strings related to vote results page -->
+    <string name="txt_vote_key">Vote Key</string>
+    <string name="txt_date_duration">Vote Time Limitation</string>
+    <string name="txt_vote_title">Sample title of the vote</string>
+    <!-- Strings related to vote submission page -->
+    <string name="vote_sub_button">Submit</string>
+    <!-- Strings related to register page -->
+    <string name="reg_email_text">Email Address</string>
+    <string name="reg_username_text">Username</string>
+    <string name="reg_password_text">Password</string>
+    <string name="reg_phone_text">Phone Number</string>
+    <string name="reg_button">Register</string>
+    <!-- Strings related to user profile page -->
+    <string name="mod_email_text">Email Address</string>
+    <string name="mod_username_text">Username</string>
+    <string name="mod_password_text">Password</string>
+    <string name="mod_phone_text">Phone Number</string>
+    <string name="mod_gender_text">Gender</string>
+    <string name="mod_birth_text">Birth Date</string>
+    <string name="mod_education_text">Education Level</string>
+    <string name="mod_sub_button">Submit</string>
+    <!-- Strings related to create vote page -->
+    <string name="new_vote_title">Title</string>
+    <string name="new_vote_end_date">End Date</string>
+    <string name="new_vote_content">Vote Content (Write in Json format)</string>
+    <string name="new_vote_submit">Submit New Vote</string>
+    <!-- Strings related to vote results page -->
+    <string name="vote_res_back">Return</string>
+</resources>
